@@ -12,14 +12,18 @@ import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCore;
 import xyz.pixelatedw.mineminenomi.api.abilities.IHitTrackerAbility;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceElement;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceHakiNature;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceType;
 import xyz.pixelatedw.mineminenomi.data.entity.ability.AbilityDataCapability;
 
 public class FlamingSlashAbility extends Ability {
 
     public static final AbilityCore INSTANCE = new AbilityCore.Builder("Flaming Slash", AbilityCategory.STYLE, FlamingSlashAbility::new)
             .addDescriptionLine("Send an enormous vertical slash in flames")
-            .setSourceElement(SourceElement.FIRE)
+            .setSourceHakiNature(SourceHakiNature.HARDENING)
+            .setSourceHakiNature(SourceHakiNature.IMBUING)
             .setSourceHakiNature(SourceHakiNature.SPECIAL)
+            .setSourceType(SourceType.SLASH)
+            .setSourceElement(SourceElement.FIRE)
             .build();
 
     public FlamingSlashAbility(AbilityCore core) {

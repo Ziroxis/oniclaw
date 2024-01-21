@@ -11,6 +11,7 @@ import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCore;
 import xyz.pixelatedw.mineminenomi.api.abilities.ChargeableAbility;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceElement;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceHakiNature;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceType;
 import xyz.pixelatedw.mineminenomi.entities.projectiles.goro.LightningEntity;
 import xyz.pixelatedw.mineminenomi.entities.zoan.VoltAmaruMorphInfo;
 import xyz.pixelatedw.mineminenomi.init.ModParticleEffects;
@@ -21,9 +22,13 @@ import java.awt.*;
 public class RoarAbility extends ChargeableAbility
 {
 	public static final AbilityCore INSTANCE = new AbilityCore.Builder("Roar", AbilityCategory.RACIAL, RoarAbility::new)
-		.addDescriptionLine("Launches a powerful roar")
-		.setSourceHakiNature(SourceHakiNature.SPECIAL)
-		.build();
+			.addDescriptionLine("Launches a powerful roar")
+			.setSourceHakiNature(SourceHakiNature.HARDENING)
+			.setSourceHakiNature(SourceHakiNature.IMBUING)
+			.setSourceHakiNature(SourceHakiNature.SPECIAL)
+			.setSourceType(SourceType.PROJECTILE)
+			.setSourceElement(SourceElement.SHOCKWAVE)
+			.build();
 
 	public RoarAbility(AbilityCore core)
 	{

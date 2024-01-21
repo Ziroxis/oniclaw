@@ -15,6 +15,8 @@ import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCategory;
 import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCore;
 import xyz.pixelatedw.mineminenomi.api.abilities.IHitTrackerAbility;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceElement;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceHakiNature;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceType;
 import xyz.pixelatedw.mineminenomi.api.events.SetOnFireEvent;
 import xyz.pixelatedw.mineminenomi.api.helpers.AbilityHelper;
 import xyz.pixelatedw.mineminenomi.data.entity.ability.AbilityDataCapability;
@@ -32,6 +34,10 @@ public class RisingSunAbility extends Ability implements IHitTrackerAbility {
 
     public static final AbilityCore INSTANCE = new AbilityCore.Builder("Rising Sun", AbilityCategory.STYLE, RisingSunAbility::new)
             .addDescriptionLine("Launch yourself forward at high speeds, uppercutting enemies in your way")
+            .setSourceHakiNature(SourceHakiNature.HARDENING)
+            .setSourceHakiNature(SourceHakiNature.IMBUING)
+            .setSourceHakiNature(SourceHakiNature.SPECIAL)
+            .setSourceType(SourceType.PHYSICAL)
             .setSourceElement(SourceElement.FIRE)
             .build();
 

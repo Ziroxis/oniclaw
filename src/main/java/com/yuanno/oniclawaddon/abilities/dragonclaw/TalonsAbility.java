@@ -5,7 +5,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TranslationTextComponent;
-import xyz.pixelatedw.mineminenomi.abilities.haki.BusoshokuHakiEmissionAbility;
 import xyz.pixelatedw.mineminenomi.abilities.haki.BusoshokuHakiInternalDestructionAbility;
 import xyz.pixelatedw.mineminenomi.api.abilities.*;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceElement;
@@ -19,6 +18,8 @@ public class TalonsAbility extends PunchAbility implements IParallelContinuousAb
     public static final AbilityCore<TalonsAbility> INSTANCE = new AbilityCore.Builder("Talons", AbilityCategory.STYLE, TalonsAbility::new)
             .addDescriptionLine("The user sets is hand in a specific form, coating it with fire")
             .setSourceHakiNature(SourceHakiNature.HARDENING)
+            .setSourceHakiNature(SourceHakiNature.IMBUING)
+            .setSourceHakiNature(SourceHakiNature.SPECIAL)
             .setSourceType(SourceType.FIST)
             .setSourceElement(SourceElement.FIRE)
             .build();
@@ -48,6 +49,11 @@ public class TalonsAbility extends PunchAbility implements IParallelContinuousAb
     {
         BusoshokuHakiInternalDestructionAbility busoshokuHakiInternalDestructionAbility = AbilityDataCapability.get(player).getEquippedAbility(BusoshokuHakiInternalDestructionAbility.INSTANCE);
         boolean emissionEnabled = busoshokuHakiInternalDestructionAbility != null && busoshokuHakiInternalDestructionAbility.isContinuous();
+        if (!player.getMainHandItem().isEmpty())
+        {
+            player.sendMessage(new TranslationTextComponent(ModI18n.ABILITY_MESSAGE_NEED_NO_ITEMS), Util.NIL_UUID);
+            return false;
+        }
         if (!emissionEnabled)
         {
             player.sendMessage(new TranslationTextComponent(ModI18n.ABILITY_MESSAGE_NEED_INTERNAL), Util.NIL_UUID);
@@ -60,6 +66,11 @@ public class TalonsAbility extends PunchAbility implements IParallelContinuousAb
     {
         BusoshokuHakiInternalDestructionAbility busoshokuHakiInternalDestructionAbility = AbilityDataCapability.get(player).getEquippedAbility(BusoshokuHakiInternalDestructionAbility.INSTANCE);
         boolean emissionEnabled = busoshokuHakiInternalDestructionAbility != null && busoshokuHakiInternalDestructionAbility.isContinuous();
+        if (!player.getMainHandItem().isEmpty())
+        {
+            player.sendMessage(new TranslationTextComponent(ModI18n.ABILITY_MESSAGE_NEED_NO_ITEMS), Util.NIL_UUID);
+            this.tryStoppingContinuity(player);
+        }
         if (!emissionEnabled)
         {
             player.sendMessage(new TranslationTextComponent(ModI18n.ABILITY_MESSAGE_NEED_INTERNAL), Util.NIL_UUID);

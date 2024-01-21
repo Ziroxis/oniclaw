@@ -6,6 +6,9 @@ import net.minecraft.potion.EffectInstance;
 import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCategory;
 import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCore;
 import xyz.pixelatedw.mineminenomi.api.abilities.ContinuousAbility;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceElement;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceHakiNature;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceType;
 import xyz.pixelatedw.mineminenomi.init.ModEffects;
 
 import java.util.Random;
@@ -14,6 +17,12 @@ public class DominanceAbility extends ContinuousAbility {
 
     public static final AbilityCore INSTANCE = new AbilityCore.Builder("Dominance", AbilityCategory.RACIAL, DominanceAbility::new)
             .addDescriptionLine("Throws a multitude of slashes around you rendering you immovable.")
+            .setSourceHakiNature(SourceHakiNature.HARDENING)
+            .setSourceHakiNature(SourceHakiNature.IMBUING)
+            .setSourceHakiNature(SourceHakiNature.SPECIAL)
+            .setSourceType(SourceType.SLASH)
+            .setSourceElement(SourceElement.AIR)
+
             .build();
     public DominanceAbility(AbilityCore abilityCore)
     {

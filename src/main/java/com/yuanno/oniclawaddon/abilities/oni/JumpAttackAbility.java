@@ -5,6 +5,9 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SEntityVelocityPacket;
 import net.minecraft.util.math.vector.Vector3d;
 import xyz.pixelatedw.mineminenomi.api.abilities.*;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceElement;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceHakiNature;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceType;
 import xyz.pixelatedw.mineminenomi.api.helpers.AbilityHelper;
 import xyz.pixelatedw.mineminenomi.particles.effects.CommonExplosionParticleEffect;
 import xyz.pixelatedw.mineminenomi.wypi.WyHelper;
@@ -16,6 +19,12 @@ public class JumpAttackAbility extends Ability implements IHitTrackerAbility {
 
     public static final AbilityCore INSTANCE = new AbilityCore.Builder("Jump Attack", AbilityCategory.RACIAL, JumpAttackAbility::new)
             .addDescriptionLine("Launch yourself upwards, descending dealing damage")
+            .setSourceHakiNature(SourceHakiNature.HARDENING)
+            .setSourceHakiNature(SourceHakiNature.IMBUING)
+            .setSourceHakiNature(SourceHakiNature.SPECIAL)
+            .setSourceType(SourceType.BLUNT)
+            .setSourceElement(SourceElement.SHOCKWAVE)
+
             .build();
 
     private HashSet<UUID> hits = new HashSet<>();

@@ -20,6 +20,7 @@ import xyz.pixelatedw.mineminenomi.animations.swordsman.IttoryuPoseAnimation;
 import xyz.pixelatedw.mineminenomi.api.abilities.*;
 import xyz.pixelatedw.mineminenomi.api.animations.IAnimation;
 import xyz.pixelatedw.mineminenomi.api.damagesource.AbilityDamageSource;
+import xyz.pixelatedw.mineminenomi.api.damagesource.SourceElement;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceHakiNature;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceType;
 import xyz.pixelatedw.mineminenomi.api.helpers.AbilityHelper;
@@ -35,8 +36,11 @@ public class ThunderBaguaAbility extends ChargeableAbility implements IAnimatedA
 {
 	public static final AbilityCore<ShiShishiSonsonAbility> INSTANCE = new AbilityCore.Builder("Thunder Bagua", AbilityCategory.RACIAL, ThunderBaguaAbility::new)
 		.addDescriptionLine("The user dashes forward and rapidly smashes the opponent creating an explosion")
-		.setSourceHakiNature(SourceHakiNature.IMBUING)
-		.setSourceType(SourceType.BLUNT)
+			.setSourceHakiNature(SourceHakiNature.HARDENING)
+			.setSourceHakiNature(SourceHakiNature.IMBUING)
+			.setSourceHakiNature(SourceHakiNature.SPECIAL)
+			.setSourceType(SourceType.BLUNT)
+			.setSourceElement(SourceElement.METAL)
 		.build();
 
 	private static final float MAX_TELEPORT_DISTANCE = 30;

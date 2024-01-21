@@ -30,6 +30,10 @@ public class GrabAbility extends ChargeableAbility implements IGrappleAbility {
 
     public static final AbilityCore<GrabAbility> INSTANCE = new AbilityCore.Builder("Grab", AbilityCategory.STYLE, GrabAbility::new)
             .addDescriptionLine("The user sets is hand in a specific form, coating it with fire")
+            .setSourceHakiNature(SourceHakiNature.HARDENING)
+            .setSourceHakiNature(SourceHakiNature.IMBUING)
+            .setSourceHakiNature(SourceHakiNature.SPECIAL)
+            .setSourceType(SourceType.INTERNAL)
             .setSourceElement(SourceElement.FIRE)
             .build();
 

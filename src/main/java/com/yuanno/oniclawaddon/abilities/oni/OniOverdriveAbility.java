@@ -1,30 +1,38 @@
 package com.yuanno.oniclawaddon.abilities.oni;
 
+import com.yuanno.oniclawaddon.init.ModParticleEffects;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.ParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import xyz.pixelatedw.mineminenomi.abilities.gomu.GomuHelper;
 import xyz.pixelatedw.mineminenomi.api.abilities.*;
 import xyz.pixelatedw.mineminenomi.data.entity.ability.AbilityDataCapability;
 import xyz.pixelatedw.mineminenomi.data.entity.entitystats.EntityStatsCapability;
 import xyz.pixelatedw.mineminenomi.init.ModAttributes;
 import xyz.pixelatedw.mineminenomi.init.ModI18n;
-import xyz.pixelatedw.mineminenomi.init.ModParticleEffects;
 import xyz.pixelatedw.mineminenomi.init.ModSounds;
+import xyz.pixelatedw.mineminenomi.particles.data.SimpleParticleData;
+import xyz.pixelatedw.mineminenomi.particles.effects.ParticleEffect;
 import xyz.pixelatedw.mineminenomi.wypi.WyHelper;
 
+import java.awt.*;
 import java.util.UUID;
 
 public class OniOverdriveAbility extends ContinuousAbility implements IParallelContinuousAbility {
 
     public static final AbilityCore INSTANCE = new AbilityCore.Builder("Oni Overdrive", AbilityCategory.RACIAL, OniOverdriveAbility::new)
             .addDescriptionLine("Goes into overdrive, gaining strength, speed and mobility")
+
             .build();
 
     private static final AbilityAttributeModifier JUMP_HEIGHT = new AbilityAttributeModifier(UUID.fromString("c8983d00-b863-11ee-a506-0242ac120002"), INSTANCE, "Oni Overdrive Jump Modifier", 5, AttributeModifier.Operation.ADDITION);
@@ -63,7 +71,7 @@ public class OniOverdriveAbility extends ContinuousAbility implements IParallelC
     {
         if (passiveTimer % 10 == 0)
         {
-            WyHelper.spawnParticleEffect(ModParticleEffects.GEAR_SECOND.get(), player, player.getX(), player.getY(), player.getZ());
+            WyHelper.spawnParticleEffect(ModParticleEffects.OVERDRIVE.get(), player, player.getX(), player.getY(), player.getZ());
         }
 
         if (player.isSprinting())
@@ -110,4 +118,5 @@ public class OniOverdriveAbility extends ContinuousAbility implements IParallelC
         player.getAttribute(ModAttributes.FALL_RESISTANCE.get()).removeModifier(FALL_REDUCTION);
 
     }
+
 }

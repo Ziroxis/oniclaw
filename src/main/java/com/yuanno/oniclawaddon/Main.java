@@ -1,6 +1,7 @@
 package com.yuanno.oniclawaddon;
 
 import com.yuanno.oniclawaddon.init.ModAbilities;
+import com.yuanno.oniclawaddon.init.ModParticleEffects;
 import com.yuanno.oniclawaddon.renderers.TalonsRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -36,17 +37,17 @@ import xyz.pixelatedw.mineminenomi.renderers.layers.armor.UpperHalfArmorLayer;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(Main.MOD_ID)
 public class Main
 {
-    // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "oniclawaddon";
     public Main() {
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModAbilities.register(eventBus);
+        ModParticleEffects.register(eventBus);
+
         MinecraftForge.EVENT_BUS.register(this);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
