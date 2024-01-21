@@ -59,7 +59,7 @@ public class JumpAttackAbility extends Ability implements IHitTrackerAbility {
             explosion.setStaticDamage(60.0F);
             explosion.setDamageOwner(false);
             explosion.setSmokeParticles(new CommonExplosionParticleEffect(4));
-            explosion.setFireAfterExplosion(true);
+            explosion.setFireAfterExplosion(false);
             explosion.doExplosion();
         }
     }
