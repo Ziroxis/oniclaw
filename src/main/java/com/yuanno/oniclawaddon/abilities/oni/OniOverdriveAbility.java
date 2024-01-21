@@ -30,6 +30,7 @@ public class OniOverdriveAbility extends ContinuousAbility implements IParallelC
     private static final AbilityAttributeModifier JUMP_HEIGHT = new AbilityAttributeModifier(UUID.fromString("c8983d00-b863-11ee-a506-0242ac120002"), INSTANCE, "Oni Overdrive Jump Modifier", 5, AttributeModifier.Operation.ADDITION);
     private static final AbilityAttributeModifier STRENGTH_MODIFIER = new AbilityAttributeModifier(UUID.fromString("cdeefe24-b863-11ee-a506-0242ac120002"), INSTANCE, "Oni Overdrive Attack Damage Modifier", 4, AttributeModifier.Operation.ADDITION);
     private static final AbilityAttributeModifier STEP_HEIGHT = new AbilityAttributeModifier(UUID.fromString("d07c4ab6-b863-11ee-a506-0242ac120002"), INSTANCE, "Oni Overdrive Step Height Modifier", 1, AttributeModifier.Operation.ADDITION);
+    private static final AbilityAttributeModifier FALL_REDUCTION = new AbilityAttributeModifier(UUID.fromString("64016dd4-b86e-11ee-a506-0242ac120002"), INSTANCE, "Oni Overdrive Fall Reduction Modifier", 6, AttributeModifier.Operation.ADDITION);
 
     private boolean prevSprintValue = false;
 
@@ -52,6 +53,7 @@ public class OniOverdriveAbility extends ContinuousAbility implements IParallelC
         player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).addTransientModifier(JUMP_HEIGHT);
         player.getAttribute(Attributes.ATTACK_SPEED).addTransientModifier(STRENGTH_MODIFIER);
         player.getAttribute(ModAttributes.PUNCH_DAMAGE.get()).addTransientModifier(STRENGTH_MODIFIER);
+        player.getAttribute(ModAttributes.FALL_RESISTANCE.get()).addTransientModifier(FALL_REDUCTION);
 
         this.prevSprintValue = player.isSprinting();
         return true;
@@ -105,5 +107,7 @@ public class OniOverdriveAbility extends ContinuousAbility implements IParallelC
         player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).removeModifier(JUMP_HEIGHT);
         player.getAttribute(Attributes.ATTACK_SPEED).removeModifier(STRENGTH_MODIFIER);
         player.getAttribute(ModAttributes.PUNCH_DAMAGE.get()).removeModifier(STRENGTH_MODIFIER);
+        player.getAttribute(ModAttributes.FALL_RESISTANCE.get()).removeModifier(FALL_REDUCTION);
+
     }
 }

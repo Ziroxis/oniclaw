@@ -45,7 +45,7 @@ public class DominanceAbility extends ContinuousAbility {
             player.level.addFreshEntity(projectile);
         }
 
-        if (timer >= 480) {
+        if (timer >= 200) {
             this.stopContinuity(player);
         }
     }

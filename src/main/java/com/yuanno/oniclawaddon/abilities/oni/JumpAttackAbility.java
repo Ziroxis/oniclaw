@@ -34,8 +34,8 @@ public class JumpAttackAbility extends Ability implements IHitTrackerAbility {
     {
         this.clearHits();
 
-        Vector3d speed = WyHelper.propulsion(player, 0, 6, 0);
-        player.setDeltaMovement(speed.x, speed.y, speed.z);
+        Vector3d speed = WyHelper.propulsion(player, 3, -8, 3);
+        player.setDeltaMovement(speed.x, 0.8 + speed.y, speed.z);
         ((ServerPlayerEntity)player).connection.send(new SEntityVelocityPacket(player));
         return true;
 
@@ -43,17 +43,41 @@ public class JumpAttackAbility extends Ability implements IHitTrackerAbility {
 
     private void duringCooldown(PlayerEntity player, int cooldownTimer)
     {
+
         if (!this.canDealDamage())
             return;
 
-        if (cooldownTimer < 120 && cooldownTimer > 100)
+        System.out.println(cooldownTimer);
+        if (cooldownTimer > 360 && cooldownTimer < 370) {
+            Vector3d speed = WyHelper.propulsion(player, 3, 18, 3);
+            player.setDeltaMovement(speed.x, speed.y, speed.z);
+            ((ServerPlayerEntity) player).connection.send(new SEntityVelocityPacket(player));
+        }
+
+        if (cooldownTimer > 320 && cooldownTimer < 360 && player.isOnGround())
+        {
+            ExplosionAbility explosion = AbilityHelper.newExplosion(player, player.level, player.getX(), player.getY(), player.getZ(), 4.0F);
+            explosion.setStaticDamage(60.0F);
+            explosion.setDamageOwner(false);
+            explosion.setDestroyBlocks(false);
+            explosion.setSmokeParticles(new CommonExplosionParticleEffect(4));
+            explosion.setFireAfterExplosion(false);
+            explosion.doExplosion();
+
+        }
+
+
+
+        /*
+        if (cooldownTimer < 120)
         {
             Vector3d speed = WyHelper.propulsion(player, 0, -6, 0);
             player.setDeltaMovement(speed.x, speed.y, speed.z);
             ((ServerPlayerEntity) player).connection.send(new SEntityVelocityPacket(player));
+            player.hurtMarked = true;
 
         }
-        if (player.isOnGround())
+        if (player.isOnGround() && cooldownTimer < 160)
         {
             ExplosionAbility explosion = AbilityHelper.newExplosion(player, player.level, player.getX(), player.getY(), player.getZ(), 4.0F);
             explosion.setStaticDamage(60.0F);
@@ -62,11 +86,13 @@ public class JumpAttackAbility extends Ability implements IHitTrackerAbility {
             explosion.setFireAfterExplosion(false);
             explosion.doExplosion();
         }
+
+         */
     }
 
     public boolean canDealDamage()
     {
-        return this.cooldown > WyHelper.percentage(90, this.getMaxCooldown());
+        return this.cooldown > WyHelper.percentage(80, this.getMaxCooldown());
     }
 
     @Override
