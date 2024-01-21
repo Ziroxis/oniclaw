@@ -24,6 +24,6 @@ public class DragonClawProjectiles {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerEntityRenderers(FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(FLAMING_SLASH.get(), new GlowingAbilityProjectileRenderer.Factory(new CubeModel()).setColor(0.9F, 0.4F, 0.15F, 1F).setScale(40, 1.2, 0.5));
+        RenderingRegistry.registerEntityRenderingHandler(FLAMING_SLASH.get(), new AbilityProjectileRenderer.Factory(new CubeModel()).setColor("ED7F10").setScale(1.0, 24.0, 0.5));
     }
 }
