@@ -116,10 +116,10 @@ public class ThunderBaguaAbility extends ChargeableAbility implements IAnimatedA
 				if (player.canSee(target) && this.canHit(target))
 				{
 					boolean flag = target.hurt(AbilityDamageSource.causeAbilityDamage(player, this, "player").setBlunt(), 90);
-					ExplosionAbility explosion = AbilityHelper.newExplosion(player, player.level, target.getX(), target.getY(), target.getZ(), 4.0F);
+					ExplosionAbility explosion = AbilityHelper.newExplosion(player, player.level, target.getX(), target.getY(), target.getZ(), 6.0F);
 					explosion.setStaticDamage(10.0F);
 					explosion.setDamageOwner(false);
-					explosion.setSmokeParticles(new CommonExplosionParticleEffect(4));
+					explosion.setSmokeParticles(new CommonExplosionParticleEffect(6));
 					explosion.setFireAfterExplosion(false);
 					explosion.doExplosion();
 					if(flag)
