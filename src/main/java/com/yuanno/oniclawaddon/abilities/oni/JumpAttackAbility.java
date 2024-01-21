@@ -65,29 +65,6 @@ public class JumpAttackAbility extends Ability implements IHitTrackerAbility {
             explosion.doExplosion();
 
         }
-
-
-
-        /*
-        if (cooldownTimer < 120)
-        {
-            Vector3d speed = WyHelper.propulsion(player, 0, -6, 0);
-            player.setDeltaMovement(speed.x, speed.y, speed.z);
-            ((ServerPlayerEntity) player).connection.send(new SEntityVelocityPacket(player));
-            player.hurtMarked = true;
-
-        }
-        if (player.isOnGround() && cooldownTimer < 160)
-        {
-            ExplosionAbility explosion = AbilityHelper.newExplosion(player, player.level, player.getX(), player.getY(), player.getZ(), 4.0F);
-            explosion.setStaticDamage(60.0F);
-            explosion.setDamageOwner(false);
-            explosion.setSmokeParticles(new CommonExplosionParticleEffect(4));
-            explosion.setFireAfterExplosion(false);
-            explosion.doExplosion();
-        }
-
-         */
     }
 
     public boolean canDealDamage()
