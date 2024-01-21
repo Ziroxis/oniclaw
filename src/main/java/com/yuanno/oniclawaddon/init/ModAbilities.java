@@ -6,6 +6,7 @@ import com.yuanno.oniclawaddon.abilities.dragonclaw.RisingSunAbility;
 import com.yuanno.oniclawaddon.abilities.dragonclaw.TalonsAbility;
 import com.yuanno.oniclawaddon.abilities.oni.JumpAttackAbility;
 import com.yuanno.oniclawaddon.abilities.oni.OniOverdriveAbility;
+import com.yuanno.oniclawaddon.abilities.oni.RoarAbility;
 import com.yuanno.oniclawaddon.abilities.oni.ThunderBaguaAbility;
 import net.minecraftforge.eventbus.api.IEventBus;
 import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCore;
@@ -18,7 +19,7 @@ import java.util.Objects;
 public class ModAbilities {
 
     public static final AbilityCore[] DRAGONCLAW_ABILITIES = new AbilityCore[] {TalonsAbility.INSTANCE, GrabAbility.INSTANCE, RisingSunAbility.INSTANCE, FlamingSlashAbility.INSTANCE};
-    public static final AbilityCore[] ONI_ABILITIES = new AbilityCore[] {OniOverdriveAbility.INSTANCE, JumpAttackAbility.INSTANCE, ThunderBaguaAbility.INSTANCE};
+    public static final AbilityCore[] ONI_ABILITIES = new AbilityCore[] {OniOverdriveAbility.INSTANCE, JumpAttackAbility.INSTANCE, ThunderBaguaAbility.INSTANCE, RoarAbility.INSTANCE};
 
     private static void registerAbilities(AbilityCore[] abilities)
     {
