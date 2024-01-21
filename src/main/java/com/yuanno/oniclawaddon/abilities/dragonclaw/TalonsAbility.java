@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.TranslationTextComponent;
 import xyz.pixelatedw.mineminenomi.abilities.haki.BusoshokuHakiEmissionAbility;
+import xyz.pixelatedw.mineminenomi.abilities.haki.BusoshokuHakiInternalDestructionAbility;
 import xyz.pixelatedw.mineminenomi.api.abilities.*;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceElement;
 import xyz.pixelatedw.mineminenomi.api.damagesource.SourceHakiNature;
@@ -45,11 +46,11 @@ public class TalonsAbility extends PunchAbility implements IParallelContinuousAb
 
     private boolean onStartContinuityEvent(PlayerEntity player)
     {
-        BusoshokuHakiEmissionAbility busoshokuHakiEmissionAbility = AbilityDataCapability.get(player).getEquippedAbility(BusoshokuHakiEmissionAbility.INSTANCE);
-        boolean emissionEnabled = busoshokuHakiEmissionAbility != null && busoshokuHakiEmissionAbility.isContinuous();
+        BusoshokuHakiInternalDestructionAbility busoshokuHakiInternalDestructionAbility = AbilityDataCapability.get(player).getEquippedAbility(BusoshokuHakiInternalDestructionAbility.INSTANCE);
+        boolean emissionEnabled = busoshokuHakiInternalDestructionAbility != null && busoshokuHakiInternalDestructionAbility.isContinuous();
         if (!emissionEnabled)
         {
-            player.sendMessage(new TranslationTextComponent(ModI18n.ABILITY_MESSAGE_NEED_EMISSION), Util.NIL_UUID);
+            player.sendMessage(new TranslationTextComponent(ModI18n.ABILITY_MESSAGE_NEED_INTERNAL), Util.NIL_UUID);
             return false;
         }
         return true;
@@ -57,11 +58,11 @@ public class TalonsAbility extends PunchAbility implements IParallelContinuousAb
 
     private void duringContinuityEvent(PlayerEntity player, int i)
     {
-        BusoshokuHakiEmissionAbility busoshokuHakiEmissionAbility = AbilityDataCapability.get(player).getEquippedAbility(BusoshokuHakiEmissionAbility.INSTANCE);
-        boolean emissionEnabled = busoshokuHakiEmissionAbility != null && busoshokuHakiEmissionAbility.isContinuous();
+        BusoshokuHakiInternalDestructionAbility busoshokuHakiInternalDestructionAbility = AbilityDataCapability.get(player).getEquippedAbility(BusoshokuHakiInternalDestructionAbility.INSTANCE);
+        boolean emissionEnabled = busoshokuHakiInternalDestructionAbility != null && busoshokuHakiInternalDestructionAbility.isContinuous();
         if (!emissionEnabled)
         {
-            player.sendMessage(new TranslationTextComponent(ModI18n.ABILITY_MESSAGE_NEED_EMISSION), Util.NIL_UUID);
+            player.sendMessage(new TranslationTextComponent(ModI18n.ABILITY_MESSAGE_NEED_INTERNAL), Util.NIL_UUID);
             this.tryStoppingContinuity(player);
         }
     }
