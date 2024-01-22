@@ -7,7 +7,7 @@
 
   ],
   "client": [
-
+    "CharacterCreatorScreenMixin"
   ],
   "server": [],
   "injectors": {

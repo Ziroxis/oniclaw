@@ -1,6 +1,7 @@
 package com.yuanno.oniclawaddon;
 
 import com.yuanno.oniclawaddon.init.ModAbilities;
+import com.yuanno.oniclawaddon.init.ModNetwork;
 import com.yuanno.oniclawaddon.init.ModParticleEffects;
 import com.yuanno.oniclawaddon.renderers.TalonsRenderer;
 import net.minecraft.block.Block;
@@ -51,6 +52,7 @@ public class Main
         MinecraftForge.EVENT_BUS.register(this);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
 
     }
 
@@ -72,5 +74,7 @@ public class Main
              }
          });
     }
-
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        ModNetwork.init();
+    }
 }

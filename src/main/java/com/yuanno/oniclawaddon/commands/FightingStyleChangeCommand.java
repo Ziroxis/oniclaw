@@ -43,9 +43,9 @@ public class FightingStyleChangeCommand {
                         .then(Commands.argument("style", StringArgumentType.string()).suggests(SUGGEST_SET)
                                 .executes((command) ->
                                 {
-                                    String race = StringArgumentType.getString(command, "style");
+                                    String style = StringArgumentType.getString(command, "style");
 
-                                    return setRace(command.getSource(), EntityArgument.getPlayer(command, "target"), race);
+                                    return setStyle(command.getSource(), EntityArgument.getPlayer(command, "target"), style);
                                 }))));
     }
 
@@ -62,12 +62,12 @@ public class FightingStyleChangeCommand {
         return ISuggestionProvider.suggest(suggestions.stream(), builder);
     };
 
-    private static int setRace(CommandSource commandSource, PlayerEntity player, String style)
+    private static int setStyle(CommandSource commandSource, PlayerEntity player, String style)
     {
         IEntityStats entityStats = EntityStatsCapability.get(player);
         entityStats.setFightingStyle(style);
         IAbilityData abilityData = AbilityDataCapability.get(player);
-        abilityData.clearEquippedAbilities(AbilityCategory.STYLE.isPartofCategory());
+        abilityData.clearUnlockedAbilities(AbilityCategory.STYLE.isPartofCategory());
         switch (style)
         {
             case (ModValues.SWORDSMAN):

@@ -1,141 +1,177 @@
-plugins {
-    id 'eclipse'
-    id 'idea'
-    id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/maven' }
+        maven { url = 'https://maven.parchmentmc.org' }
+        jcenter()
+        mavenCentral()
     }
-
-version = mod_version
-group = mod_group_id
-
-base {
-    archivesName = mod_id
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7.+'
+        classpath group: 'org.parchmentmc', name: 'librarian', version: '1.+'
     }
+}
 
-// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: 'java-library'
 
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+import java.text.DecimalFormat
+
+def shortHash = 'git rev-parse --short HEAD'.execute().in.text.trim()
+version = '1.0'
+group = 'com.yuanno.oniclwadaddon' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "oniclwadaddon"
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+
+repositories {
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
+}
+
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-    copyIdeResources = true
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    mappings channel: 'official', version: '1.16.5'
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+
+
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
     runs {
-        configureEach {
+        client {
             workingDirectory project.file('run')
+
             property 'forge.logging.markers', 'REGISTRIES'
+
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                "${mod_id}" {
+                examplemod {
                     source sourceSets.main
                 }
             }
         }
 
-        client {
-
-            workingDirectory project.file('run/client')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-
-        }
-
         server {
-            args '--nogui'
+            workingDirectory project.file('run')
+
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
         }
 
         data {
-            workingDirectory project.file('run-data')
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            // The markers can be changed as needed.
+            // "SCAN": For mods scan.
+            // "REGISTRIES": For firing of registry events.
+            // "REGISTRYDUMP": For getting the contents of all registries.
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            // Recommended logging level for the console
+            // You can set various levels here.
+            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+            property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'soulsawakening', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
         }
     }
-}
+    client {
 
+        workingDirectory project.file('run/client')
+        property 'mixin.env.remapRefMap', 'true'
+        property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+    }
+}
+mixin {
+    add sourceSets.main, "oni-claw-addon.refmap.json"
+
+    config "oniclwadaddon.mixins.json"
+}
 // Include resources generated by data generators.
 sourceSets.main.resources { srcDir 'src/generated/resources' }
-
 repositories {
-    // Put repositories for dependencies here
-    // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
-    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
-    // flatDir {
-    //     dir 'libs'
-    // }
     flatDir {
         dir 'libs'
     }
 }
 
 dependencies {
-    // Specify the version of Minecraft to use.
-    // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
-    // The "userdev" classifier will be requested and setup by ForgeGradle.
-    implementation fg.deobf("org.spongepowered:mixin:0.8.2")
-    annotationProcessor fg.deobf("org.spongepowered:mixin-compiler:0.8.2")
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    //implementation files('libs/mine-mine-no-mi-1.16.5-0.9.5.jar')
-    //implementation files('libs/extra-fighting-styles-1.0.jar')
+
+    minecraft "net.minecraftforge:forge:1.16.5-36.2.34"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf('xyz.pixelatedw:mine-mine-no-mi:1.16.5-0.9.5')
+
 }
 
-// This block of code expands all declared replace properties in the specified resource targets.
-// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
-// When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
-// See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
-tasks.named('processResources', ProcessResources).configure {
-    var replaceProperties = [
-            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
-            forge_version: forge_version, forge_version_range: forge_version_range,
-            loader_version_range: loader_version_range,
-            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_description: mod_description,
-    ]
-    inputs.properties replaceProperties
 
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
-    }
-}
 
-// Example for how to get properties into the manifest for reading at runtime.
-tasks.named('jar', Jar).configure {
-    manifest {
-        attributes([
-                'Specification-Title'     : mod_id,
-                'Specification-Vendor'    : mod_authors,
-                'Specification-Version'   : '1', // We are version 1 of ourselves
-                'Implementation-Title'    : project.name,
-                'Implementation-Version'  : project.jar.archiveVersion,
-                'Implementation-Vendor'   : mod_authors,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-}
 
-// This is the preferred method to reobfuscate your jar file
-    finalizedBy 'reobfJar'
-}
+jar.finalizedBy('reobfJar')
 
-// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing:
-// tasks.named('publish').configure {
-//     dependsOn 'reobfJar'
-// }
+
 
 publishing {
     publications {
-        register('mavenJava', MavenPublication) {
+        mavenJava(MavenPublication) {
             artifact jar
         }
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+            url "file:///${project.projectDir}/mcmodsrepo"
         }
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+// Example for how to get properties into the manifest for reading by the runtime..
+jar {
+    manifest {
+        attributes([
+                "MixinConfigs": archivesBaseName+".mixins.json",
+                "Implementation-Title": "modid",
+                "Implementation-Version": "1.0",
+                "Implementation-Commit": shortHash,
+                "Implementation-Vendor" : group,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
 }

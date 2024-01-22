@@ -55,7 +55,7 @@ public class RaceChangeCommand {
         IEntityStats entityStats = EntityStatsCapability.get(player);
         entityStats.setRace(race);
         IAbilityData abilityData = AbilityDataCapability.get(player);
-        abilityData.clearEquippedAbilities(AbilityCategory.RACIAL.isPartofCategory());
+        abilityData.clearUnlockedAbilities(AbilityCategory.RACIAL.isPartofCategory());
         AbilityProgressionEvents.checkForRacialUnlocks(player);
         WyNetwork.sendTo(new SSyncEntityStatsPacket(player.getId(), entityStats), player);
         WyNetwork.sendTo(new SSyncAbilityDataPacket(player.getId(), abilityData), player);
