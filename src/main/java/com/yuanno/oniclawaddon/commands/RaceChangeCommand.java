@@ -46,6 +46,7 @@ public class RaceChangeCommand {
         suggestions.add(ModValues.FISHMAN);
         suggestions.add(ModValues.CYBORG);
         suggestions.add(ModValues.MINK);
+        suggestions.add("oni");
 
         return ISuggestionProvider.suggest(suggestions.stream(), builder);
     };

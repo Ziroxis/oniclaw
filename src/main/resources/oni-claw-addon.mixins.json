@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "oni-claw-addon.refmap.json",
   "mixins": [
-
+    "AbilityHelperMixin"
   ],
   "client": [
     "CharacterCreatorScreenMixin"

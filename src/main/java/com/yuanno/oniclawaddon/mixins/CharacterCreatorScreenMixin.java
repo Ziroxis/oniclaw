@@ -1,5 +1,6 @@
 package com.yuanno.oniclawaddon.mixins;
 
+import com.yuanno.oniclawaddon.packets.CFinishCCPacketOverwriteMixin;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,7 +36,6 @@ public class CharacterCreatorScreenMixin {
 
     @Inject(method = "completeCreation", at = @At("HEAD"), remap = false, cancellable = true)
     private void onCompleteCreation(CallbackInfo ci) {
-        System.out.println("CALLED HERE CREATION");
         Minecraft.getInstance().setScreen(null);
         WyNetwork.sendToServer(new CFinishCCPacketOverwriteMixin(getSelectedFactionId(), getSelectedRaceId(), getSelectedStyleId()));
         ci.cancel();

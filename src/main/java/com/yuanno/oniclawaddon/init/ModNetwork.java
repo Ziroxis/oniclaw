@@ -1,6 +1,6 @@
 package com.yuanno.oniclawaddon.init;
 
-import com.yuanno.oniclawaddon.mixins.CFinishCCPacketOverwriteMixin;
+import com.yuanno.oniclawaddon.packets.CFinishCCPacketOverwriteMixin;
 import xyz.pixelatedw.mineminenomi.wypi.WyNetwork;
 
 public class ModNetwork {

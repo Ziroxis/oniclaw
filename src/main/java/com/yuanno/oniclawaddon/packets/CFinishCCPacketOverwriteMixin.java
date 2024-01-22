@@ -1,4 +1,4 @@
-package com.yuanno.oniclawaddon.mixins;
+package com.yuanno.oniclawaddon.packets;
 
 import com.google.common.base.Strings;
 import net.minecraft.entity.player.PlayerEntity;
@@ -65,7 +65,6 @@ public class CFinishCCPacketOverwriteMixin
 		{
 			ctx.get().enqueueWork(() ->
 			{
-				/*
 				PlayerEntity player = ctx.get().getSender();
 				IEntityStats entityProps = EntityStatsCapability.get(player);
 				IAbilityData abilityProps = AbilityDataCapability.get(player);
@@ -89,8 +88,11 @@ public class CFinishCCPacketOverwriteMixin
 				entityProps.setFaction(faction);
 
 				String race;
-				if (message.raceId == 0 || CommonConfig.INSTANCE.getRaceRandomizer())
-					race = RACES[1 + rand.nextInt(RACES.length - 1)];
+
+				if (message.raceId == 0 || CommonConfig.INSTANCE.getRaceRandomizer()) {
+
+					race = randomChoice();
+				}
 				else
 					race = RACES[message.raceId];
 				entityProps.setRace(race);
@@ -108,7 +110,7 @@ public class CFinishCCPacketOverwriteMixin
 					style = STYLES[message.styleId];
 				entityProps.setFightingStyle(style);
 
-				AbilityHelper.validateRacialAndHakiAbilities(player);
+				  AbilityHelper.validateRacialAndHakiAbilities(player);
 
 				if (entityProps.isCyborg())
 				{
@@ -127,10 +129,44 @@ public class CFinishCCPacketOverwriteMixin
 				WyNetwork.sendToAllTrackingAndSelf(new SSyncEntityStatsPacket(player.getId(), entityProps), player);
 				WyNetwork.sendTo(new SSyncAbilityDataPacket(player.getId(), abilityProps), (ServerPlayerEntity) player);
 
-				 */
+
 			});
 		}
 
 		ctx.get().setPacketHandled(true);
+	}
+
+
+	public static String randomChoice() {
+		// Strings to choose from
+		String[] strings = {ModValues.HUMAN, ModValues.FISHMAN, ModValues.DOCTOR, ModValues.MINK, "Oni"};
+
+		// Probabilities for each string
+		double[] probabilities = {0.245, 0.245, 0.245, 0.245, 0.02};  // Adjusted probabilities
+
+		// Validate that the probabilities add up to 1
+		double sum = 0;
+		for (double prob : probabilities) {
+			sum += prob;
+		}
+
+		if (sum != 1.0) {
+			throw new IllegalArgumentException("Probabilities must add up to 1");
+		}
+
+		// Choose a random number between 0 and 1
+		double randomNumber = Math.random();
+
+		// Use cumulative probabilities to determine the chosen string
+		double cumulativeProbability = 0;
+		for (int i = 0; i < probabilities.length; i++) {
+			cumulativeProbability += probabilities[i];
+			if (randomNumber <= cumulativeProbability) {
+				return strings[i];
+			}
+		}
+
+		// Default to the last string if for some reason the loop didn't return a value
+		return strings[strings.length - 1];
 	}
 }
