@@ -3,6 +3,10 @@ package com.yuanno.oniclawaddon.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
+import com.yuanno.oniclawaddon.abilities.dragonclaw.FlamingSlashAbility;
+import com.yuanno.oniclawaddon.abilities.dragonclaw.GrabAbility;
+import com.yuanno.oniclawaddon.abilities.dragonclaw.RisingSunAbility;
+import com.yuanno.oniclawaddon.abilities.dragonclaw.TalonsAbility;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
@@ -58,6 +62,7 @@ public class FightingStyleChangeCommand {
         suggestions.add(ModValues.ART_OF_WEATHER);
         suggestions.add(ModValues.BLACK_LEG);
         suggestions.add(ModValues.BRAWLER);
+        suggestions.add("dragonclaw");
 
         return ISuggestionProvider.suggest(suggestions.stream(), builder);
     };
@@ -122,6 +127,12 @@ public class FightingStyleChangeCommand {
                 abilityData.addUnlockedAbility(JishinHoAbility.INSTANCE);
                 abilityData.addUnlockedAbility(SpinningBrawlAbility.INSTANCE);
                 abilityData.addUnlockedAbility(SuplexAbility.INSTANCE);
+                break;
+            case ("dragonclaw"):
+                abilityData.addUnlockedAbility(TalonsAbility.INSTANCE);
+                abilityData.addUnlockedAbility(RisingSunAbility.INSTANCE);
+                abilityData.addUnlockedAbility(GrabAbility.INSTANCE);
+                abilityData.addUnlockedAbility(FlamingSlashAbility.INSTANCE);
                 break;
         }
         WyNetwork.sendTo(new SSyncEntityStatsPacket(player.getId(), entityStats), player);

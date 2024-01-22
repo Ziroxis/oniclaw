@@ -46,7 +46,6 @@ public class AbilityHelperMixin {
                 } else if (props.getRace().equals("oni")) {
                     iconName = "oni-abilities";
                 }
-                System.out.println("MIXIN APPLIED");
                 return iconName != null ? new ResourceLocation("mineminenomi", "textures/gui/icons/" + iconName + ".png") : null;
             };
 

@@ -139,7 +139,7 @@ public class CFinishCCPacketOverwriteMixin
 
 	public static String randomChoice() {
 		// Strings to choose from
-		String[] strings = {ModValues.HUMAN, ModValues.FISHMAN, ModValues.DOCTOR, ModValues.MINK, "Oni"};
+		String[] strings = {ModValues.HUMAN, ModValues.FISHMAN, ModValues.CYBORG, ModValues.MINK, "Oni"};
 
 		// Probabilities for each string
 		double[] probabilities = {0.245, 0.245, 0.245, 0.245, 0.02};  // Adjusted probabilities
