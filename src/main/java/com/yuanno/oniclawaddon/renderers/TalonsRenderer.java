@@ -12,7 +12,6 @@ import net.minecraft.entity.LivingEntity;
 import xyz.pixelatedw.mineminenomi.api.abilities.Ability;
 import xyz.pixelatedw.mineminenomi.data.entity.ability.AbilityDataCapability;
 import xyz.pixelatedw.mineminenomi.data.entity.ability.IAbilityData;
-import xyz.pixelatedw.mineminenomi.events.passives.MinkPassiveEvents;
 
 public class TalonsRenderer<T extends LivingEntity, M extends EntityModel<T>> extends LayerRenderer<T, M>
 {
