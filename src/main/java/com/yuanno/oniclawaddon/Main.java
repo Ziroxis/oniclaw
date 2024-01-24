@@ -5,6 +5,7 @@ import com.yuanno.oniclawaddon.init.ModItems;
 import com.yuanno.oniclawaddon.init.ModNetwork;
 import com.yuanno.oniclawaddon.init.ModParticleEffects;
 import com.yuanno.oniclawaddon.renderers.TalonsRenderer;
+import com.yuanno.oniclawaddon.renderers.layers.OniRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
@@ -66,13 +67,18 @@ public class Main
                  if (entityRenderer instanceof LivingRenderer) {
                      LivingRenderer renderer = (LivingRenderer) entityRenderer;
                      renderer.addLayer(new TalonsRenderer(renderer));
+                     if (renderer.getModel() instanceof BipedModel) {
+                         renderer.addLayer(new OniRenderer(renderer));
+                     }
                  }
              }
 
              for (Map.Entry<String, PlayerRenderer> entry : Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().entrySet()) {
                  PlayerRenderer renderer = entry.getValue();
                  renderer.addLayer(new TalonsRenderer(renderer));
-
+                 if (renderer.getModel() instanceof BipedModel) {
+                     renderer.addLayer(new OniRenderer(renderer));
+                 }
              }
          });
     }
