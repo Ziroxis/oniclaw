@@ -1,0 +1,7 @@
+{
+  "parent": "mineminenomi:item/custom/kaidoweapon",
+  "textures": {
+    "1": "mineminenomi:items/kaidoweapon",
+    "particle": "mineminenomi:items/placehold"
+  }
+}

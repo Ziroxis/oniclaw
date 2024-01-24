@@ -1,0 +1,7 @@
+{
+  "parent": "mineminenomi:item/custom/kikoku_sheathed",
+  "textures": {
+    "0": "mineminenomi:items/kikokublade",
+    "particle": "mineminenomi:items/placehold"
+  }
+}

@@ -34,7 +34,7 @@ import java.util.UUID;
 
 public class ThunderBaguaAbility extends ChargeableAbility implements IAnimatedAbility, IHitTrackerAbility
 {
-	public static final AbilityCore<ShiShishiSonsonAbility> INSTANCE = new AbilityCore.Builder("Thunder Bagua", AbilityCategory.RACIAL, ThunderBaguaAbility::new)
+	public static final AbilityCore<ThunderBaguaAbility> INSTANCE = new AbilityCore.Builder("Thunder Bagua", AbilityCategory.RACIAL, ThunderBaguaAbility::new)
 		.addDescriptionLine("The user dashes forward and rapidly smashes the opponent creating an explosion")
 			.setSourceHakiNature(SourceHakiNature.HARDENING)
 			.setSourceHakiNature(SourceHakiNature.IMBUING)

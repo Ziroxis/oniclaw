@@ -1,0 +1,7 @@
+{
+  "parent": "mineminenomi:item/custom/kuro_claw",
+  "textures": {
+    "0": "mineminenomi:items/kuro_claw",
+    "particle": "mineminenomi:items/placehold"
+  }
+}

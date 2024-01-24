@@ -1,0 +1,8 @@
+{
+  "parent": "mineminenomi:item/custom/kikoku_blade",
+  "textures": {
+    "0": "mineminenomi:items/kikokublade",
+    "1": "mineminenomi:items/kikokublade2",
+    "particle": "mineminenomi:items/placehold"
+  }
+}

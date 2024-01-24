@@ -1,6 +1,7 @@
 package com.yuanno.oniclawaddon;
 
 import com.yuanno.oniclawaddon.init.ModAbilities;
+import com.yuanno.oniclawaddon.init.ModItems;
 import com.yuanno.oniclawaddon.init.ModNetwork;
 import com.yuanno.oniclawaddon.init.ModParticleEffects;
 import com.yuanno.oniclawaddon.renderers.TalonsRenderer;
@@ -26,6 +27,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import xyz.pixelatedw.mineminenomi.init.ModWeapons;
 import xyz.pixelatedw.mineminenomi.renderers.abilities.EleclawRenderer;
 import xyz.pixelatedw.mineminenomi.renderers.layers.*;
 import xyz.pixelatedw.mineminenomi.renderers.layers.abilities.HanaCalendulaLayer;
@@ -48,7 +50,7 @@ public class Main
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModAbilities.register(eventBus);
         ModParticleEffects.register(eventBus);
-
+        ModItems.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);

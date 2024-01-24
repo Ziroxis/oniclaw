@@ -1,0 +1,7 @@
+{
+  "parent": "mineminenomi:item/custom/gryphon",
+  "textures": {
+    "0": "mineminenomi:items/gryphon",
+    "particle": "mineminenomi:items/placehold"
+  }
+}

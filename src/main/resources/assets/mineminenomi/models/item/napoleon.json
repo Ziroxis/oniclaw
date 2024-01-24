@@ -1,0 +1,9 @@
+{
+  "parent": "mineminenomi:item/custom/napoleon",
+  "textures": {
+    "0": "mineminenomi:items/hilt",
+    "1": "mineminenomi:items/blade",
+    "2": "mineminenomi:items/eyes",
+    "particle": "mineminenomi:items/placehold"
+  }
+}

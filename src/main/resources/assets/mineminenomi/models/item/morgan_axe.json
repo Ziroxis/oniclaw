@@ -1,0 +1,7 @@
+{
+  "parent": "mineminenomi:item/custom/morgan_axe",
+  "textures": {
+    "0": "mineminenomi:items/axe",
+    "particle": "mineminenomi:items/placehold"
+  }
+}
