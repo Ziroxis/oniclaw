@@ -1,4 +1,4 @@
-package com.yuanno.oniclawaddon.mixins;
+package com.yuanno.oniclawaddon.mixins.client;
 
 import com.yuanno.oniclawaddon.packets.CFinishCCPacketOverwriteMixin;
 import net.minecraft.client.Minecraft;

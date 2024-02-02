@@ -4,11 +4,16 @@ import com.yuanno.oniclawaddon.Main;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.pixelatedw.mineminenomi.data.entity.entitystats.EntityStatsCapability;
 import xyz.pixelatedw.mineminenomi.data.entity.entitystats.IEntityStats;
+import xyz.pixelatedw.mineminenomi.packets.server.ability.SRecalculateEyeHeightPacket;
+import xyz.pixelatedw.mineminenomi.wypi.WyNetwork;
 
 import java.util.UUID;
 
@@ -29,6 +34,15 @@ public class OniPassiveEvents {
             return;
         if (!player.getAttribute(Attributes.ARMOR).hasModifier(RESISTANCE_MODIFIER))
             player.getAttribute(Attributes.ARMOR).addTransientModifier(RESISTANCE_MODIFIER);
+
+    }
+
+    @SubscribeEvent
+    public static void onPlayerChangeDimensions(PlayerEvent.PlayerChangedDimensionEvent event)
+    {
+        PlayerEntity player = event.getPlayer();
+        MinecraftForge.EVENT_BUS.post(new EntityEvent.Size(player, player.getPose(), player.getDimensions(player.getPose()), player.getBbHeight()));
+        WyNetwork.sendToAllTrackingAndSelf(new SRecalculateEyeHeightPacket(player.getId()), player);
 
     }
 }

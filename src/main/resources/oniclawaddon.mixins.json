@@ -4,10 +4,12 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "oni-claw-addon.refmap.json",
   "mixins": [
-    "AbilityHelperMixin"
+    "AbilityHelperMixin",
+    "PlayerEntityMixin"
   ],
   "client": [
-    "CharacterCreatorScreenMixin"
+    "client.CharacterCreatorScreenMixin",
+    "client.ActiveRenderInfoMixin"
   ],
   "server": [],
   "injectors": {

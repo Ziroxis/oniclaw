@@ -16,7 +16,7 @@ import java.util.Objects;
 public class ModAbilities {
 
     public static final AbilityCore[] DRAGONCLAW_ABILITIES = new AbilityCore[] {TalonsAbility.INSTANCE, GrabAbility.INSTANCE, RisingSunAbility.INSTANCE, FlamingSlashAbility.INSTANCE};
-    public static final AbilityCore[] ONI_ABILITIES = new AbilityCore[] {OniOverdriveAbility.INSTANCE, JumpAttackAbility.INSTANCE, ThunderBaguaAbility.INSTANCE, RoarAbility.INSTANCE, DominanceAbility.INSTANCE};
+    public static final AbilityCore[] ONI_ABILITIES = new AbilityCore[] {OniOverdriveAbility.INSTANCE, JumpAttackAbility.INSTANCE, ThunderBaguaAbility.INSTANCE, RoarAbility.INSTANCE, DominanceAbility.INSTANCE, OniPassiveAbility.INSTANCE};
 
     private static void registerAbilities(AbilityCore[] abilities)
     {

@@ -671,6 +671,8 @@
 	"ability.mineminenomi.o_tatsumaki.description.0": "By spinning, the user creates a small tornado, which slashes and weakens nearby opponents",
 	"ability.mineminenomi.oni_overdrive": "Oni Overdrive",
 	"ability.mineminenomi.oni_overdrive.description.0": "Goes into overdrive, gaining strength, speed and mobility",
+	"ability.mineminenomi.oni_passive": "Oni Passive",
+	"ability.mineminenomi.oni_passive.description.0": "Changes size and stat of the player",
 	"ability.mineminenomi.onna_hormone": "Onna Hormone",
 	"ability.mineminenomi.onna_hormone.description.0": "By injecting an enemy with special female hormones, the user can inflict moderate debuffs on them\n\n§2SHIFT-USE§r: The user injects themselves",
 	"ability.mineminenomi.overheat": "Overheat",
