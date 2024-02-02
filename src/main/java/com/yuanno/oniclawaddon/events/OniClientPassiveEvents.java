@@ -35,6 +35,7 @@ public class OniClientPassiveEvents {
             IEntityStats entityStats = EntityStatsCapability.get(event.getEntity());
             if (!entityStats.getRace().equals("oni"))
                 return;
+            event.setCanceled(true);
             AbstractClientPlayerEntity player = (AbstractClientPlayerEntity) event.getEntity();
 
             OniMorphInfo morphInfo = new OniMorphInfo();

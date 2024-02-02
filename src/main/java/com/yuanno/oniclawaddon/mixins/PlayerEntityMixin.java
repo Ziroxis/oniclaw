@@ -1,6 +1,5 @@
 package com.yuanno.oniclawaddon.mixins;
 
-import com.google.common.base.Strings;
 import com.yuanno.oniclawaddon.models.OniMorphInfo;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.Pose;
@@ -9,8 +8,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import xyz.pixelatedw.mineminenomi.api.helpers.MorphHelper;
-import xyz.pixelatedw.mineminenomi.api.morph.MorphInfo;
 import xyz.pixelatedw.mineminenomi.data.entity.entitystats.EntityStatsCapability;
 import xyz.pixelatedw.mineminenomi.data.entity.entitystats.IEntityStats;
 

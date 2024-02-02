@@ -12,14 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import xyz.pixelatedw.mineminenomi.api.helpers.MorphHelper;
-import xyz.pixelatedw.mineminenomi.api.morph.MorphInfo;
-import xyz.pixelatedw.mineminenomi.data.entity.devilfruit.DevilFruitCapability;
-import xyz.pixelatedw.mineminenomi.data.entity.devilfruit.IDevilFruit;
 import xyz.pixelatedw.mineminenomi.data.entity.entitystats.EntityStatsCapability;
 import xyz.pixelatedw.mineminenomi.data.entity.entitystats.IEntityStats;
 
-@Mixin(ActiveRenderInfo.class)
+@Mixin(value = ActiveRenderInfo.class, priority = 950)
 public class ActiveRenderInfoMixin {
 
     @Shadow
@@ -54,7 +50,5 @@ public class ActiveRenderInfoMixin {
         double height = info.getCameraHeight(player);
         if(height != 0)
             this.position = new Vector3d(x, y + height, z);
-
-
     }
 }

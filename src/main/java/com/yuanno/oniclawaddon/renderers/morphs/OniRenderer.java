@@ -28,6 +28,7 @@ public class OniRenderer<T extends AbstractClientPlayerEntity, M extends MorphMo
 		super(rendererManager, info, hasSmallHands);
 		this.model = new NoMorphModel(hasSmallHands);
 		this.addLayer(new BipedArmorLayer<>(this, new BipedModel(0.5F), new BipedModel(1.0F)));
+		this.addLayer(new com.yuanno.oniclawaddon.renderers.layers.OniRenderer<>(this));
 	}
 
 	@Override

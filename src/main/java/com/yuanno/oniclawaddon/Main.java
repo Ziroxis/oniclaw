@@ -68,7 +68,6 @@ public class Main
                      LivingRenderer renderer = (LivingRenderer) entityRenderer;
                      renderer.addLayer(new TalonsRenderer(renderer));
                      if (renderer.getModel() instanceof BipedModel) {
-                         renderer.addLayer(new OniRenderer(renderer));
                      }
                  }
              }
@@ -77,7 +76,6 @@ public class Main
                  PlayerRenderer renderer = entry.getValue();
                  renderer.addLayer(new TalonsRenderer(renderer));
                  if (renderer.getModel() instanceof BipedModel) {
-                     renderer.addLayer(new OniRenderer(renderer));
                  }
              }
          });

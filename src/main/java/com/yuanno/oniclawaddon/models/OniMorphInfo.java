@@ -18,6 +18,7 @@ import xyz.pixelatedw.mineminenomi.api.morph.MorphModel;
 import xyz.pixelatedw.mineminenomi.init.ModAbilities;
 import xyz.pixelatedw.mineminenomi.items.AkumaNoMiItem;
 import xyz.pixelatedw.mineminenomi.renderers.morphs.MegaRenderer;
+import xyz.pixelatedw.mineminenomi.renderers.morphs.ZoanMorphRenderer;
 
 import java.util.Map;
 
@@ -28,7 +29,6 @@ public class OniMorphInfo extends MorphInfo
 	private static final EntitySize STANDING_SIZE = EntitySize.scalable(1.7F, 2.4F);
 	private static final EntitySize CROUCHING_SIZE = EntitySize.scalable(1.7F, 2.39F);
 	
-	@Override
 	@OnlyIn(Dist.CLIENT)
 	public IRenderFactory getRendererFactory(AbstractClientPlayerEntity entity)
 	{
@@ -36,8 +36,13 @@ public class OniMorphInfo extends MorphInfo
 		return new OniRenderer.Factory(this, isSlim);
 	}
 
+	@OnlyIn(Dist.CLIENT)
+	public IRenderFactory getRendererFactory()
+	{
+		return new ZoanMorphRenderer.Factory(this, this.hasCulling());
+	}
 
-	
+
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public MorphModel getModel()
