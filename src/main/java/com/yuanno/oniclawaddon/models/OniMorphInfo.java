@@ -28,20 +28,14 @@ public class OniMorphInfo extends MorphInfo
 
 	private static final EntitySize STANDING_SIZE = EntitySize.scalable(1.7F, 2.4F);
 	private static final EntitySize CROUCHING_SIZE = EntitySize.scalable(1.7F, 2.39F);
-	
+
+	@Override
 	@OnlyIn(Dist.CLIENT)
 	public IRenderFactory getRendererFactory(AbstractClientPlayerEntity entity)
 	{
 		boolean isSlim = entity.getModelName().equals("slim");
 		return new OniRenderer.Factory(this, isSlim);
 	}
-
-	@OnlyIn(Dist.CLIENT)
-	public IRenderFactory getRendererFactory()
-	{
-		return new ZoanMorphRenderer.Factory(this, this.hasCulling());
-	}
-
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
@@ -107,8 +101,12 @@ public class OniMorphInfo extends MorphInfo
 	@OnlyIn(Dist.CLIENT)
 	public double getCameraHeight(PlayerEntity player) {
 		boolean isFirstPerson = Minecraft.getInstance().options.getCameraType() == PointOfView.FIRST_PERSON;
-		boolean shouldSit = player.isPassenger() && player.getVehicle() != null && player.getVehicle().shouldRiderSit();
-		return isFirstPerson && shouldSit ? 0.5 : 0.0;
+		boolean shouldSit = player.isPassenger() && (player.getVehicle() != null && player.getVehicle().shouldRiderSit());
+		if(isFirstPerson && shouldSit)
+		{
+			return 0.5;
+		}
+		return 0;
 	}
 
 	

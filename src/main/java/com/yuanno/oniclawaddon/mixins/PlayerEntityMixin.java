@@ -13,7 +13,7 @@ import xyz.pixelatedw.mineminenomi.data.entity.entitystats.IEntityStats;
 
 import java.util.Map;
 
-@Mixin(value = PlayerEntity.class, priority = 950)
+@Mixin(value = PlayerEntity.class, priority = 999)
 public class PlayerEntityMixin {
 
     @Inject(method = "getDimensions", at = @At("HEAD"), cancellable = true)
@@ -21,6 +21,7 @@ public class PlayerEntityMixin {
     {
         PlayerEntity player = ((PlayerEntity) (Object) this);
         IEntityStats entityStats = EntityStatsCapability.get(player);
+        System.out.println(entityStats.getRace());
         if (entityStats.getRace().equals("oni")) {
             OniMorphInfo info = new OniMorphInfo();
             Map<Pose, EntitySize> poses = info.getSizes();

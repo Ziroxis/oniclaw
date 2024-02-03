@@ -1,14 +1,21 @@
 package com.yuanno.oniclawaddon.abilities.oni;
 
 
+import com.yuanno.oniclawaddon.models.OniMorphInfo;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityEvent;
 import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCategory;
 import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCore;
 import xyz.pixelatedw.mineminenomi.api.abilities.PassiveAbility;
+import xyz.pixelatedw.mineminenomi.data.entity.entitystats.EntityStatsCapability;
+import xyz.pixelatedw.mineminenomi.data.entity.entitystats.IEntityStats;
 import xyz.pixelatedw.mineminenomi.packets.server.ability.SRecalculateEyeHeightPacket;
 import xyz.pixelatedw.mineminenomi.wypi.WyNetwork;
+
+import java.util.Map;
 
 
 public class OniPassiveAbility extends PassiveAbility {
@@ -21,7 +28,7 @@ public class OniPassiveAbility extends PassiveAbility {
     public OniPassiveAbility(AbilityCore abilityCore)
     {
         super(abilityCore);
-
+        this.isHidden();
         this.duringPassiveEvent = this::duringPassiveEvent;
     }
 
@@ -36,6 +43,7 @@ public class OniPassiveAbility extends PassiveAbility {
             changedSize = true;
         }
     }
+
 
 
 }

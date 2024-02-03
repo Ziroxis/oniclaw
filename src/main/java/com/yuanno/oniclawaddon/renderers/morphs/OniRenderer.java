@@ -2,6 +2,7 @@ package com.yuanno.oniclawaddon.renderers.morphs;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.yuanno.oniclawaddon.renderers.layers.HornRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -18,7 +19,7 @@ import xyz.pixelatedw.mineminenomi.api.morph.MorphInfo;
 import xyz.pixelatedw.mineminenomi.api.morph.MorphModel;
 import xyz.pixelatedw.mineminenomi.init.ModRenderTypes;
 import xyz.pixelatedw.mineminenomi.models.morphs.NoMorphModel;
-import xyz.pixelatedw.mineminenomi.renderers.morphs.MegaRenderer;
+import xyz.pixelatedw.mineminenomi.renderers.layers.morphs.PartialZoanHeldItemLayer;
 import xyz.pixelatedw.mineminenomi.renderers.morphs.ZoanMorphRenderer;
 
 public class OniRenderer<T extends AbstractClientPlayerEntity, M extends MorphModel> extends ZoanMorphRenderer<T, M>
@@ -28,7 +29,7 @@ public class OniRenderer<T extends AbstractClientPlayerEntity, M extends MorphMo
 		super(rendererManager, info, hasSmallHands);
 		this.model = new NoMorphModel(hasSmallHands);
 		this.addLayer(new BipedArmorLayer<>(this, new BipedModel(0.5F), new BipedModel(1.0F)));
-		this.addLayer(new com.yuanno.oniclawaddon.renderers.layers.OniRenderer<>(this));
+		this.addLayer(new HornRenderer<>(this));
 	}
 
 	@Override
