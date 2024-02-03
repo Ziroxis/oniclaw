@@ -33,7 +33,6 @@ public class HornRenderer<T extends LivingEntity, M extends EntityModel<T>> exte
 		boolean isInvisible = entity.hasEffect(Effects.INVISIBILITY);
 		if (isOni && !isInvisible)
 		{
-			//this.getParentModel().copyPropertiesTo(HORN_MODEL);
 			HORN_MODEL.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 			HORN_MODEL.renderToBuffer(matrixStack, buffer.getBuffer(RenderType.entityTranslucent(HORN_TEXTURE)), packedLight, 0, 1f, 1f, 1f, 1f);
 
