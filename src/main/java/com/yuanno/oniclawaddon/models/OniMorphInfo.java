@@ -82,7 +82,7 @@ public class OniMorphInfo extends MorphInfo
 	@Override
 	public double getEyeHeight()
 	{
-		return 8.45;
+		return 3;
 	}
 	
 	@Override
@@ -95,7 +95,7 @@ public class OniMorphInfo extends MorphInfo
 	@OnlyIn(Dist.CLIENT)
 	public double getCameraZoom(PlayerEntity player)
 	{
-		return 8;
+		return 1.6;
 	}
 	
 	@Override

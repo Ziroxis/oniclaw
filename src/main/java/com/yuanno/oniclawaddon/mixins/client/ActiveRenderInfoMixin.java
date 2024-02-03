@@ -34,8 +34,6 @@ public class ActiveRenderInfoMixin {
         double zoom = info.getCameraZoom(player);
         if(zoom != 0)
             callback.setReturnValue(zoom);
-
-
     }
 
     @Inject(method = "setPosition", at = @At("TAIL"))

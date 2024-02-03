@@ -12,6 +12,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.pixelatedw.mineminenomi.api.abilities.AbilityOverlay;
@@ -56,7 +57,6 @@ public class OniClientPassiveEvents {
             IEntityStats props = EntityStatsCapability.get(player);
             if (!props.getRace().equals("oni"))
                 return;
-            boolean renderHand = false;
             boolean hasEmptyHand = player.getMainHandItem().isEmpty();
 
             OniMorphInfo morphInfo = new OniMorphInfo();
@@ -64,7 +64,7 @@ public class OniClientPassiveEvents {
 
 
             boolean isBlackLeg = props.isBlackLeg() && hasEmptyHand && (props.isInCombatMode() || ClientConfig.INSTANCE.isBlackLegAlwaysUp());
-            boolean isOverlay = hasEmptyHand && overlay != null;
+            boolean isOverlay = hasEmptyHand;
 
             if (isOverlay || isBlackLeg)
             {
@@ -77,7 +77,7 @@ public class OniClientPassiveEvents {
     @Mod.EventBusSubscriber(modid = Main.MOD_ID)
     public static class Common
     {
-        @SubscribeEvent
+        @SubscribeEvent(priority = EventPriority.LOWEST)
         public static void onZoanSizeChange(EntityEvent.Size event)
         {
             if (!(event.getEntity() instanceof PlayerEntity))
