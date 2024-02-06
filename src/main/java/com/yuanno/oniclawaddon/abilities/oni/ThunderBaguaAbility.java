@@ -1,5 +1,6 @@
 package com.yuanno.oniclawaddon.abilities.oni;
 
+import com.yuanno.oniclawaddon.init.ModItems;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -63,7 +64,7 @@ public class ThunderBaguaAbility extends ChargeableAbility implements IAnimatedA
 		if (!AbilityHelper.canUseMomentumAbility(player))
 			return false;
 
-		if (!player.getMainHandItem().getItem().equals(ModWeapons.MACE.get()))
+		if (!player.getMainHandItem().getItem().equals(ModWeapons.MACE.get()) && !player.getMainHandItem().getItem().equals(ModItems.KAIDO_WEAPON.get()))
 		{
 			player.sendMessage(new TranslationTextComponent(com.yuanno.oniclawaddon.init.ModI18n.ABILITY_MESSAGE_NEED_MACE), Util.NIL_UUID);
 			return false;
@@ -82,10 +83,10 @@ public class ThunderBaguaAbility extends ChargeableAbility implements IAnimatedA
 
 	private boolean endChargeEvent(PlayerEntity player)
 	{
-		if (!player.getMainHandItem().getItem().equals(ModWeapons.MACE.get()))
+		if (!player.getMainHandItem().getItem().equals(ModWeapons.MACE.get()) && !player.getMainHandItem().getItem().equals(ModItems.KAIDO_WEAPON.get()))
 		{
 			player.sendMessage(new TranslationTextComponent(com.yuanno.oniclawaddon.init.ModI18n.ABILITY_MESSAGE_NEED_MACE), Util.NIL_UUID);
-			return true;
+			return false;
 		}
 		
 		BlockPos startPos = player.blockPosition();

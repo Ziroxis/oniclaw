@@ -21,7 +21,6 @@ public class PlayerEntityMixin {
     {
         PlayerEntity player = ((PlayerEntity) (Object) this);
         IEntityStats entityStats = EntityStatsCapability.get(player);
-        System.out.println(entityStats.getRace());
         if (entityStats.getRace().equals("oni")) {
             OniMorphInfo info = new OniMorphInfo();
             Map<Pose, EntitySize> poses = info.getSizes();

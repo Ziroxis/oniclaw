@@ -21,6 +21,6 @@ public class OniProjectiles {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerEntityRenderers(FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(DOMINANCE_SLASH.get(), new AbilityProjectileRenderer.Factory(new CubeModel()).setColor("800080").setScale(1.0, 4.0, 0.5));
+        RenderingRegistry.registerEntityRenderingHandler(DOMINANCE_SLASH.get(), new AbilityProjectileRenderer.Factory(new CubeModel()).setColor("A020F0").setScale(1.0, 4.0, 0.5));
     }
 }

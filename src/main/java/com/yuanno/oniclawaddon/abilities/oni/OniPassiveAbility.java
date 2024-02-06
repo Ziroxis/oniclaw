@@ -23,12 +23,12 @@ public class OniPassiveAbility extends PassiveAbility {
     static boolean changedSize = false;
     public static final AbilityCore INSTANCE = new AbilityCore.Builder("Oni Passive", AbilityCategory.RACIAL, OniPassiveAbility::new)
             .addDescriptionLine("Changes size and stat of the player")
+            .setHidden()
             .build();
 
     public OniPassiveAbility(AbilityCore abilityCore)
     {
         super(abilityCore);
-        this.isHidden();
         this.duringPassiveEvent = this::duringPassiveEvent;
     }
 

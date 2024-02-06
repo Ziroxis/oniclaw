@@ -3,12 +3,15 @@ package com.yuanno.oniclawaddon.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
+import com.yuanno.oniclawaddon.abilities.oni.*;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityEvent;
 import xyz.pixelatedw.mineminenomi.api.abilities.AbilityCategory;
 import xyz.pixelatedw.mineminenomi.api.abilities.IAbility;
 import xyz.pixelatedw.mineminenomi.data.entity.ability.AbilityDataCapability;
@@ -19,6 +22,7 @@ import xyz.pixelatedw.mineminenomi.events.abilities.AbilityProgressionEvents;
 import xyz.pixelatedw.mineminenomi.init.ModValues;
 import xyz.pixelatedw.mineminenomi.packets.server.SSyncAbilityDataPacket;
 import xyz.pixelatedw.mineminenomi.packets.server.SSyncEntityStatsPacket;
+import xyz.pixelatedw.mineminenomi.packets.server.ability.SRecalculateEyeHeightPacket;
 import xyz.pixelatedw.mineminenomi.wypi.WyNetwork;
 
 import java.util.ArrayList;
@@ -58,6 +62,15 @@ public class RaceChangeCommand {
         IAbilityData abilityData = AbilityDataCapability.get(player);
         abilityData.clearUnlockedAbilities(AbilityCategory.RACIAL.isPartofCategory());
         AbilityProgressionEvents.checkForRacialUnlocks(player);
+        if (race.equals("oni"))
+        {
+            abilityData.addUnlockedAbility(ThunderBaguaAbility.INSTANCE);
+            abilityData.addUnlockedAbility(RoarAbility.INSTANCE);
+            abilityData.addUnlockedAbility(OniPassiveAbility.INSTANCE);
+            abilityData.addUnlockedAbility(OniOverdriveAbility.INSTANCE);
+            abilityData.addUnlockedAbility(JumpAttackAbility.INSTANCE);
+            abilityData.addUnlockedAbility(DominanceAbility.INSTANCE);
+        }
         WyNetwork.sendTo(new SSyncEntityStatsPacket(player.getId(), entityStats), player);
         WyNetwork.sendTo(new SSyncAbilityDataPacket(player.getId(), abilityData), player);
 

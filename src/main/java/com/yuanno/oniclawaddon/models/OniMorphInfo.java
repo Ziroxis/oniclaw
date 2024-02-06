@@ -89,7 +89,7 @@ public class OniMorphInfo extends MorphInfo
 	@OnlyIn(Dist.CLIENT)
 	public double getCameraZoom(PlayerEntity player)
 	{
-		return 1.6;
+		return 3;
 	}
 	
 	@Override
@@ -114,8 +114,8 @@ public class OniMorphInfo extends MorphInfo
 	public Map<Pose, EntitySize> getSizes()
 	{
 		return ImmutableMap.<Pose, EntitySize>builder()
-			.put(Pose.STANDING, EntitySize.scalable(1.6F, 3.6F))
-			.put(Pose.CROUCHING, EntitySize.scalable(1.6F, 3.4F))
+			.put(Pose.STANDING, EntitySize.scalable(1.6F, 3.2F))
+			.put(Pose.CROUCHING, EntitySize.scalable(1.6F, 3F))
 			.build();
 	}
 }

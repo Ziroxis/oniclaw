@@ -23,12 +23,19 @@ public class DominanceProjectile extends AbilityProjectileEntity {
         super(OniProjectiles.DOMINANCE_SLASH.get(), world, thrower, ability);
 
         this.setDamage(20);
-        super.setMaxLife(40);
-        super.setCanGetStuckInGround();
-        super.setPassThroughEntities();
+        this.setMaxLife(40);
+        this.setCanGetStuckInGround();
+        this.setDamageSource(this.getDamageSource().setSlash());
+        this.onBlockImpactEvent = this::onBlockImpactEvent;
 
     }
 
+    private void onBlockImpactEvent(BlockPos hit) {
+        ExplosionAbility explosion = AbilityHelper.newExplosion(this.getThrower(), this.level, (double)hit.getX(), (double)hit.getY(), (double)hit.getZ(), 1.0F);
+        explosion.setStaticDamage(5.0F);
+        explosion.setSmokeParticles(new CommonExplosionParticleEffect(2));
+        explosion.doExplosion();
+    }
 
 
 }

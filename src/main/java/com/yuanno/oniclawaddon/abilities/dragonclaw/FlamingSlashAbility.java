@@ -28,7 +28,7 @@ public class FlamingSlashAbility extends Ability {
 
     public FlamingSlashAbility(AbilityCore core) {
         super(core);
-
+        this.setMaxCooldown(40);
         this.onUseEvent = this::onUseEvent;
 
     }

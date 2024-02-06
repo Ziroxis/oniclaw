@@ -45,7 +45,8 @@ public class DominanceAbility extends ContinuousAbility {
         boolean z = RNGboolean();
 
         for (int i = 0; i < 4; i++) {
-            YakkodoriProjectile projectile = new YakkodoriProjectile(player.level, player);
+            DominanceProjectile projectile = new DominanceProjectile(player.level, player, this);
+
 
             double posX = player.getX() + (x ? randX : -randX);
             double posY = player.getY() + (y ? randY : -randY);
